@@ -1,11 +1,12 @@
 const db = require('./db');
 
 const buildAllPostsSection = () => {
-  db.getPosts().then((posts) => {
+  db.getPosts(posts => {
+    
     posts.forEach(post => {
       const article = document.createElement('article');
       article.id = `post_${post.id}`;
-
+  
       $('#all-posts-section').append(article);
   
       const title = `<h2>${post.title}</h2>`;
@@ -13,10 +14,9 @@ const buildAllPostsSection = () => {
       const body = `<p>${bodyWithLineBreaks}</p>`;
       
       $(`#post_${post.id}`).html(title + body);
-      // article.append(body);
-  
     });
-  });  
+
+  });
 };
 
 module.exports = buildAllPostsSection;
