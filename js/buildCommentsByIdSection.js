@@ -2,25 +2,18 @@ const db = require('./db');
 const buildForm = require('./buildForm');
 
 const buildCommentsByPostIdSection = () => {
-  // const commentsByIdSection = $('#comments-by-id-section');
-  
-  // commentsByIdSection.html(`<form>
-  // <label for="postId">Search Comments By Post Id</label>
-  // <input type="text" id="postId">
-  // </form>
-  // <input id="submitBtn" type="submit" value="Submit">`);
   
   buildForm('comments-by-id-section', 'Search Comments By Post Id', 'postId');
 
   $('#submitBtn').click(() => {
+    
     $('#comments-by-id-section > article').remove();
     
     const postId = $('#postId').val();
-    // console.log(postId);
-    db.getCommentsByPostId(postId).then((comments) => {
+
+    db.getCommentsByPostId(postId, comments => {
       comments.forEach((comment) => {
-        // a similar version of this is in buildAllPostsSection.js
-        // maybe can make this a module
+        
         const article = document.createElement('article');
         article.id = `comment_${comment.id}`;
   
@@ -33,8 +26,8 @@ const buildCommentsByPostIdSection = () => {
         
         $(`#comment_${comment.id}`).html(name + email + body);
       });
-      // console.log(post);
     });
+    
   });
 };
 
