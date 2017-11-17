@@ -1,13 +1,16 @@
 const db = require('./db');
+const buildForm = require('./buildForm');
 
 const buildCommentsByPostIdSection = () => {
-  const commentsByIdSection = $('#comments-by-id-section');
+  // const commentsByIdSection = $('#comments-by-id-section');
   
-  commentsByIdSection.html(`<form>
-  <label for="postId">Search Comments By Post Id</label>
-  <input type="text" id="postId">
-  </form>
-  <input id="submitBtn" type="submit" value="Submit">`);
+  // commentsByIdSection.html(`<form>
+  // <label for="postId">Search Comments By Post Id</label>
+  // <input type="text" id="postId">
+  // </form>
+  // <input id="submitBtn" type="submit" value="Submit">`);
+  
+  buildForm('comments-by-id-section', 'Search Comments By Post Id', 'postId');
 
   $('#submitBtn').click(() => {
     $('#comments-by-id-section > article').remove();
